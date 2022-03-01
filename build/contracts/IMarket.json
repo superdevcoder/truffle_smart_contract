@@ -1,0 +1,4807 @@
+{
+  "contractName": "IMarket",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "ask",
+          "type": "uint256"
+        }
+      ],
+      "name": "AskCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "ask",
+          "type": "uint256"
+        }
+      ],
+      "name": "AskRemoved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "bidder",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "recipient",
+              "type": "address"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "sellOnShare",
+              "type": "tuple"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct IMarket.Bid",
+          "name": "bid",
+          "type": "tuple"
+        }
+      ],
+      "name": "BidCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "bidder",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "recipient",
+              "type": "address"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "sellOnShare",
+              "type": "tuple"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct IMarket.Bid",
+          "name": "bid",
+          "type": "tuple"
+        }
+      ],
+      "name": "BidFinalized",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "bidder",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "recipient",
+              "type": "address"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "sellOnShare",
+              "type": "tuple"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct IMarket.Bid",
+          "name": "bid",
+          "type": "tuple"
+        }
+      ],
+      "name": "BidRemoved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "prevOwner",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "creator",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "owner",
+              "type": "tuple"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct IMarket.BidShares",
+          "name": "bidShares",
+          "type": "tuple"
+        }
+      ],
+      "name": "BidShareUpdated",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "bidder",
+          "type": "address"
+        }
+      ],
+      "name": "bidForTokenBidder",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "bidder",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "recipient",
+              "type": "address"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "sellOnShare",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct IMarket.Bid",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "currentAskForToken",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "bidSharesForToken",
+      "outputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "prevOwner",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "creator",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "owner",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct IMarket.BidShares",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "bidAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "isValidBid",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "prevOwner",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "creator",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "owner",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct IMarket.BidShares",
+          "name": "bidShares",
+          "type": "tuple"
+        }
+      ],
+      "name": "isValidBidShares",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct Decimal.D256",
+          "name": "sharePercentage",
+          "type": "tuple"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "splitShare",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "mediaContractAddress",
+          "type": "address"
+        }
+      ],
+      "name": "configure",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "prevOwner",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "creator",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "owner",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct IMarket.BidShares",
+          "name": "bidShares",
+          "type": "tuple"
+        }
+      ],
+      "name": "setBidShares",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "ask",
+          "type": "uint256"
+        }
+      ],
+      "name": "setAsk",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "removeAsk",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "bidder",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "recipient",
+              "type": "address"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "sellOnShare",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct IMarket.Bid",
+          "name": "bid",
+          "type": "tuple"
+        },
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        }
+      ],
+      "name": "setBid",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "bidder",
+          "type": "address"
+        }
+      ],
+      "name": "removeBid",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "bidder",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "recipient",
+              "type": "address"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "sellOnShare",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct IMarket.Bid",
+          "name": "expectedBid",
+          "type": "tuple"
+        }
+      ],
+      "name": "acceptBid",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.8+commit.0bbfe453\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"ask\",\"type\":\"uint256\"}],\"name\":\"AskCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"ask\",\"type\":\"uint256\"}],\"name\":\"AskRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"bidder\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"sellOnShare\",\"type\":\"tuple\"}],\"indexed\":false,\"internalType\":\"struct IMarket.Bid\",\"name\":\"bid\",\"type\":\"tuple\"}],\"name\":\"BidCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"bidder\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"sellOnShare\",\"type\":\"tuple\"}],\"indexed\":false,\"internalType\":\"struct IMarket.Bid\",\"name\":\"bid\",\"type\":\"tuple\"}],\"name\":\"BidFinalized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"bidder\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"sellOnShare\",\"type\":\"tuple\"}],\"indexed\":false,\"internalType\":\"struct IMarket.Bid\",\"name\":\"bid\",\"type\":\"tuple\"}],\"name\":\"BidRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"components\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"prevOwner\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"creator\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"owner\",\"type\":\"tuple\"}],\"indexed\":false,\"internalType\":\"struct IMarket.BidShares\",\"name\":\"bidShares\",\"type\":\"tuple\"}],\"name\":\"BidShareUpdated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"bidder\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"sellOnShare\",\"type\":\"tuple\"}],\"internalType\":\"struct IMarket.Bid\",\"name\":\"expectedBid\",\"type\":\"tuple\"}],\"name\":\"acceptBid\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"bidder\",\"type\":\"address\"}],\"name\":\"bidForTokenBidder\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"bidder\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"sellOnShare\",\"type\":\"tuple\"}],\"internalType\":\"struct IMarket.Bid\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"bidSharesForToken\",\"outputs\":[{\"components\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"prevOwner\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"creator\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"owner\",\"type\":\"tuple\"}],\"internalType\":\"struct IMarket.BidShares\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"mediaContractAddress\",\"type\":\"address\"}],\"name\":\"configure\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"currentAskForToken\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"bidAmount\",\"type\":\"uint256\"}],\"name\":\"isValidBid\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"prevOwner\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"creator\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"owner\",\"type\":\"tuple\"}],\"internalType\":\"struct IMarket.BidShares\",\"name\":\"bidShares\",\"type\":\"tuple\"}],\"name\":\"isValidBidShares\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"removeAsk\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"bidder\",\"type\":\"address\"}],\"name\":\"removeBid\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"ask\",\"type\":\"uint256\"}],\"name\":\"setAsk\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"bidder\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"sellOnShare\",\"type\":\"tuple\"}],\"internalType\":\"struct IMarket.Bid\",\"name\":\"bid\",\"type\":\"tuple\"},{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"}],\"name\":\"setBid\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"components\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"prevOwner\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"creator\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"owner\",\"type\":\"tuple\"}],\"internalType\":\"struct IMarket.BidShares\",\"name\":\"bidShares\",\"type\":\"tuple\"}],\"name\":\"setBidShares\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"sharePercentage\",\"type\":\"tuple\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"splitShare\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{},\"title\":\"Interface for Zora Protocol's Market\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/IMarket.sol\":\"IMarket\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x9a9cf02622cd7a64261b10534fc3260449da25c98c9e96d1b4ae8110a20e5806\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2df142592d1dc267d9549049ee3317fa190d2f87eaa565f86ab05ec83f7ab8f5\",\"dweb:/ipfs/QmSkJtcfWo7c42KnL5hho6GFxK6HRNV91XABx1P7xDtfLV\"]},\"project:/contracts/Decimal.sol\":{\"keccak256\":\"0xdf9283e27845035f000ecfe169ea7f6a2873633fa357285adf53d4b738513abc\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://e9a284788f11c6cf7d9896ef0571dc8d290e67ef84b1810765f238a973763ba4\",\"dweb:/ipfs/QmTxiAdWDdEhLoB5UxChzoyhFDEXv5xoKCg6BgEbzKymjT\"]},\"project:/contracts/IMarket.sol\":{\"keccak256\":\"0xc0469db5e8708c973bf85076b880bc255d1be48941e1d003d5af07eb26750385\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://1a0eb23ef4663ddd07e8168a600f9f7ecf69ead9b9c5835969cdf83de3d3c0b0\",\"dweb:/ipfs/QmXMkhipGDffeaLYuKDx5PBCvGDebFzP6oox5J6Au2k1ex\"]},\"project:/contracts/Math.sol\":{\"keccak256\":\"0x991bf77e90b345d6f9e1de722b089076930bd5df7f3d82d381a817e65011a241\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f20bbbc48be8c265eeba9e5d92e737e80bad35d4379d182966738c55b399d7db\",\"dweb:/ipfs/QmW533cx5Zz1muhYcVcwnisDvRKF6yh6iKJFkL8N9YoqPw\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: GPL-3.0\r\n\r\npragma solidity 0.6.8;\r\npragma experimental ABIEncoderV2;\r\n\r\nimport {Decimal} from \"./Decimal.sol\";\r\n\r\n/**\r\n * @title Interface for Zora Protocol's Market\r\n */\r\ninterface IMarket {\r\n    struct Bid {\r\n        // Amount of the currency being bid\r\n        uint256 amount;\r\n        // Address to the ERC20 token being used to bid\r\n        // address currency;\r\n        // Address of the bidder\r\n        address bidder;\r\n        // Address of the recipient\r\n        address recipient;\r\n        // % of the next sale to award the current owner\r\n        Decimal.D256 sellOnShare;\r\n    }\r\n\r\n    // struct Ask {\r\n    //     // Amount of the currency being asked\r\n    //     uint256 amount;\r\n    //     // Address to the ERC20 token being asked\r\n    //     address currency;\r\n    // }\r\n\r\n    struct BidShares {\r\n        // % of sale value that goes to the _previous_ owner of the nft\r\n        Decimal.D256 prevOwner;\r\n        // % of sale value that goes to the original creator of the nft\r\n        Decimal.D256 creator;\r\n        // % of sale value that goes to the seller (current owner) of the nft\r\n        Decimal.D256 owner;\r\n    }\r\n\r\n    event BidCreated(uint256 indexed tokenId, Bid bid);\r\n    event BidRemoved(uint256 indexed tokenId, Bid bid);\r\n    event BidFinalized(uint256 indexed tokenId, Bid bid);\r\n    event AskCreated(uint256 indexed tokenId, uint256 ask);\r\n    event AskRemoved(uint256 indexed tokenId, uint256 ask);\r\n    event BidShareUpdated(uint256 indexed tokenId, BidShares bidShares);\r\n\r\n    function bidForTokenBidder(uint256 tokenId, address bidder)\r\n        external\r\n        view\r\n        returns (Bid memory);\r\n\r\n    function currentAskForToken(uint256 tokenId)\r\n        external\r\n        view\r\n        returns (uint256);\r\n\r\n    function bidSharesForToken(uint256 tokenId)\r\n        external\r\n        view\r\n        returns (BidShares memory);\r\n\r\n    function isValidBid(uint256 tokenId, uint256 bidAmount)\r\n        external\r\n        view\r\n        returns (bool);\r\n\r\n    function isValidBidShares(BidShares calldata bidShares)\r\n        external\r\n        pure\r\n        returns (bool);\r\n\r\n    function splitShare(Decimal.D256 calldata sharePercentage, uint256 amount)\r\n        external\r\n        pure\r\n        returns (uint256);\r\n\r\n    function configure(address mediaContractAddress) external;\r\n\r\n    function setBidShares(uint256 tokenId, BidShares calldata bidShares)\r\n        external;\r\n\r\n    function setAsk(uint256 tokenId, uint256 ask) external;\r\n\r\n    function removeAsk(uint256 tokenId) external;\r\n\r\n    function setBid(\r\n        uint256 tokenId,\r\n        Bid calldata bid,\r\n        address spender\r\n    ) payable external;\r\n\r\n    function removeBid(uint256 tokenId, address bidder) external;\r\n\r\n    function acceptBid(uint256 tokenId, Bid calldata expectedBid) external;\r\n}",
+  "sourcePath": "E:\\202202\\lou\\contracts\\contracts\\IMarket.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/IMarket.sol",
+    "exportedSymbols": {
+      "IMarket": [
+        4731
+      ]
+    },
+    "id": 4732,
+    "license": "GPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 4579,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".8"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:22:22"
+      },
+      {
+        "id": 4580,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "63:33:22"
+      },
+      {
+        "absolutePath": "project:/contracts/Decimal.sol",
+        "file": "./Decimal.sol",
+        "id": 4582,
+        "nodeType": "ImportDirective",
+        "scope": 4732,
+        "sourceUnit": 3448,
+        "src": "100:38:22",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "argumentTypes": null,
+              "id": 4581,
+              "name": "Decimal",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": null,
+              "src": "108:7:22",
+              "typeDescriptions": {
+                "typeIdentifier": null,
+                "typeString": null
+              }
+            },
+            "local": null
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 4583,
+          "nodeType": "StructuredDocumentation",
+          "src": "142:56:22",
+          "text": "@title Interface for Zora Protocol's Market"
+        },
+        "fullyImplemented": false,
+        "id": 4731,
+        "linearizedBaseContracts": [
+          4731
+        ],
+        "name": "IMarket",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IMarket.Bid",
+            "id": 4592,
+            "members": [
+              {
+                "constant": false,
+                "id": 4585,
+                "mutability": "mutable",
+                "name": "amount",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 4592,
+                "src": "292:14:22",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 4584,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "292:7:22",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 4587,
+                "mutability": "mutable",
+                "name": "bidder",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 4592,
+                "src": "438:14:22",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 4586,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "438:7:22",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 4589,
+                "mutability": "mutable",
+                "name": "recipient",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 4592,
+                "src": "500:17:22",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 4588,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "500:7:22",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 4591,
+                "mutability": "mutable",
+                "name": "sellOnShare",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 4592,
+                "src": "586:24:22",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_D256_$3384_storage_ptr",
+                  "typeString": "struct Decimal.D256"
+                },
+                "typeName": {
+                  "contractScope": null,
+                  "id": 4590,
+                  "name": "Decimal.D256",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 3384,
+                  "src": "586:12:22",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_D256_$3384_storage_ptr",
+                    "typeString": "struct Decimal.D256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Bid",
+            "nodeType": "StructDefinition",
+            "scope": 4731,
+            "src": "225:393:22",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "IMarket.BidShares",
+            "id": 4599,
+            "members": [
+              {
+                "constant": false,
+                "id": 4594,
+                "mutability": "mutable",
+                "name": "prevOwner",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 4599,
+                "src": "922:22:22",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_D256_$3384_storage_ptr",
+                  "typeString": "struct Decimal.D256"
+                },
+                "typeName": {
+                  "contractScope": null,
+                  "id": 4593,
+                  "name": "Decimal.D256",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 3384,
+                  "src": "922:12:22",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_D256_$3384_storage_ptr",
+                    "typeString": "struct Decimal.D256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 4596,
+                "mutability": "mutable",
+                "name": "creator",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 4599,
+                "src": "1028:20:22",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_D256_$3384_storage_ptr",
+                  "typeString": "struct Decimal.D256"
+                },
+                "typeName": {
+                  "contractScope": null,
+                  "id": 4595,
+                  "name": "Decimal.D256",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 3384,
+                  "src": "1028:12:22",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_D256_$3384_storage_ptr",
+                    "typeString": "struct Decimal.D256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 4598,
+                "mutability": "mutable",
+                "name": "owner",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 4599,
+                "src": "1138:18:22",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_D256_$3384_storage_ptr",
+                  "typeString": "struct Decimal.D256"
+                },
+                "typeName": {
+                  "contractScope": null,
+                  "id": 4597,
+                  "name": "Decimal.D256",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 3384,
+                  "src": "1138:12:22",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_D256_$3384_storage_ptr",
+                    "typeString": "struct Decimal.D256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "BidShares",
+            "nodeType": "StructDefinition",
+            "scope": 4731,
+            "src": "821:343:22",
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 4605,
+            "name": "BidCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 4604,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4601,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4605,
+                  "src": "1189:23:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4600,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1189:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4603,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "bid",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4605,
+                  "src": "1214:7:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Bid_$4592_memory_ptr",
+                    "typeString": "struct IMarket.Bid"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 4602,
+                    "name": "Bid",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4592,
+                    "src": "1214:3:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Bid_$4592_storage_ptr",
+                      "typeString": "struct IMarket.Bid"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1188:34:22"
+            },
+            "src": "1172:51:22"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 4611,
+            "name": "BidRemoved",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 4610,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4607,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4611,
+                  "src": "1246:23:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4606,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1246:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4609,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "bid",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4611,
+                  "src": "1271:7:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Bid_$4592_memory_ptr",
+                    "typeString": "struct IMarket.Bid"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 4608,
+                    "name": "Bid",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4592,
+                    "src": "1271:3:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Bid_$4592_storage_ptr",
+                      "typeString": "struct IMarket.Bid"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1245:34:22"
+            },
+            "src": "1229:51:22"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 4617,
+            "name": "BidFinalized",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 4616,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4613,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4617,
+                  "src": "1305:23:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4612,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1305:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4615,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "bid",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4617,
+                  "src": "1330:7:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Bid_$4592_memory_ptr",
+                    "typeString": "struct IMarket.Bid"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 4614,
+                    "name": "Bid",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4592,
+                    "src": "1330:3:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Bid_$4592_storage_ptr",
+                      "typeString": "struct IMarket.Bid"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1304:34:22"
+            },
+            "src": "1286:53:22"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 4623,
+            "name": "AskCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 4622,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4619,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4623,
+                  "src": "1362:23:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4618,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1362:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4621,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "ask",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4623,
+                  "src": "1387:11:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4620,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1387:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1361:38:22"
+            },
+            "src": "1345:55:22"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 4629,
+            "name": "AskRemoved",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 4628,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4625,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4629,
+                  "src": "1423:23:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4624,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1423:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4627,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "ask",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4629,
+                  "src": "1448:11:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4626,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1448:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1422:38:22"
+            },
+            "src": "1406:55:22"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 4635,
+            "name": "BidShareUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 4634,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4631,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4635,
+                  "src": "1489:23:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4630,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1489:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4633,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "bidShares",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4635,
+                  "src": "1514:19:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_BidShares_$4599_memory_ptr",
+                    "typeString": "struct IMarket.BidShares"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 4632,
+                    "name": "BidShares",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4599,
+                    "src": "1514:9:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_BidShares_$4599_storage_ptr",
+                      "typeString": "struct IMarket.BidShares"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1488:46:22"
+            },
+            "src": "1467:68:22"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "ad827dc4",
+            "id": 4644,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "bidForTokenBidder",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4640,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4637,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4644,
+                  "src": "1570:15:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4636,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1570:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4639,
+                  "mutability": "mutable",
+                  "name": "bidder",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4644,
+                  "src": "1587:14:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4638,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1587:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1569:33:22"
+            },
+            "returnParameters": {
+              "id": 4643,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4642,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4644,
+                  "src": "1653:10:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Bid_$4592_memory_ptr",
+                    "typeString": "struct IMarket.Bid"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 4641,
+                    "name": "Bid",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4592,
+                    "src": "1653:3:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Bid_$4592_storage_ptr",
+                      "typeString": "struct IMarket.Bid"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1652:12:22"
+            },
+            "scope": 4731,
+            "src": "1543:122:22",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "578064f6",
+            "id": 4651,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "currentAskForToken",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4647,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4646,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4651,
+                  "src": "1701:15:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4645,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1701:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1700:17:22"
+            },
+            "returnParameters": {
+              "id": 4650,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4649,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4651,
+                  "src": "1768:7:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4648,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1768:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1767:9:22"
+            },
+            "scope": 4731,
+            "src": "1673:104:22",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "f9ce0582",
+            "id": 4658,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "bidSharesForToken",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4654,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4653,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4658,
+                  "src": "1812:15:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4652,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1812:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1811:17:22"
+            },
+            "returnParameters": {
+              "id": 4657,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4656,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4658,
+                  "src": "1879:16:22",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_BidShares_$4599_memory_ptr",
+                    "typeString": "struct IMarket.BidShares"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 4655,
+                    "name": "BidShares",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4599,
+                    "src": "1879:9:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_BidShares_$4599_storage_ptr",
+                      "typeString": "struct IMarket.BidShares"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1878:18:22"
+            },
+            "scope": 4731,
+            "src": "1785:112:22",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "02e8fe13",
+            "id": 4667,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isValidBid",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4663,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4660,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4667,
+                  "src": "1925:15:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4659,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1925:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4662,
+                  "mutability": "mutable",
+                  "name": "bidAmount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4667,
+                  "src": "1942:17:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4661,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1942:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1924:36:22"
+            },
+            "returnParameters": {
+              "id": 4666,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4665,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4667,
+                  "src": "2011:4:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 4664,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2011:4:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2010:6:22"
+            },
+            "scope": 4731,
+            "src": "1905:112:22",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "360636eb",
+            "id": 4674,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isValidBidShares",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4670,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4669,
+                  "mutability": "mutable",
+                  "name": "bidShares",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4674,
+                  "src": "2051:28:22",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_BidShares_$4599_calldata_ptr",
+                    "typeString": "struct IMarket.BidShares"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 4668,
+                    "name": "BidShares",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4599,
+                    "src": "2051:9:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_BidShares_$4599_storage_ptr",
+                      "typeString": "struct IMarket.BidShares"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2050:30:22"
+            },
+            "returnParameters": {
+              "id": 4673,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4672,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4674,
+                  "src": "2131:4:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 4671,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2131:4:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2130:6:22"
+            },
+            "scope": 4731,
+            "src": "2025:112:22",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "b920c123",
+            "id": 4683,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "splitShare",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4679,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4676,
+                  "mutability": "mutable",
+                  "name": "sharePercentage",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4683,
+                  "src": "2165:37:22",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_D256_$3384_calldata_ptr",
+                    "typeString": "struct Decimal.D256"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 4675,
+                    "name": "Decimal.D256",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 3384,
+                    "src": "2165:12:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_D256_$3384_storage_ptr",
+                      "typeString": "struct Decimal.D256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4678,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4683,
+                  "src": "2204:14:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4677,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2204:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2164:55:22"
+            },
+            "returnParameters": {
+              "id": 4682,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4681,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4683,
+                  "src": "2270:7:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4680,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2270:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2269:9:22"
+            },
+            "scope": 4731,
+            "src": "2145:134:22",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "75cb2672",
+            "id": 4688,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "configure",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4686,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4685,
+                  "mutability": "mutable",
+                  "name": "mediaContractAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4688,
+                  "src": "2306:28:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4684,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2306:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2305:30:22"
+            },
+            "returnParameters": {
+              "id": 4687,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2344:0:22"
+            },
+            "scope": 4731,
+            "src": "2287:58:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "eb55683a",
+            "id": 4695,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setBidShares",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4693,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4690,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4695,
+                  "src": "2375:15:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4689,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2375:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4692,
+                  "mutability": "mutable",
+                  "name": "bidShares",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4695,
+                  "src": "2392:28:22",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_BidShares_$4599_calldata_ptr",
+                    "typeString": "struct IMarket.BidShares"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 4691,
+                    "name": "BidShares",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4599,
+                    "src": "2392:9:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_BidShares_$4599_storage_ptr",
+                      "typeString": "struct IMarket.BidShares"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2374:47:22"
+            },
+            "returnParameters": {
+              "id": 4694,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2439:0:22"
+            },
+            "scope": 4731,
+            "src": "2353:87:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "e49f8768",
+            "id": 4702,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setAsk",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4700,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4697,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4702,
+                  "src": "2464:15:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4696,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2464:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4699,
+                  "mutability": "mutable",
+                  "name": "ask",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4702,
+                  "src": "2481:11:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4698,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2481:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2463:30:22"
+            },
+            "returnParameters": {
+              "id": 4701,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2502:0:22"
+            },
+            "scope": 4731,
+            "src": "2448:55:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "28220f35",
+            "id": 4707,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeAsk",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4705,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4704,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4707,
+                  "src": "2530:15:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4703,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2530:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2529:17:22"
+            },
+            "returnParameters": {
+              "id": 4706,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2555:0:22"
+            },
+            "scope": 4731,
+            "src": "2511:45:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "7ccb5f6f",
+            "id": 4716,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setBid",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4714,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4709,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4716,
+                  "src": "2590:15:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4708,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2590:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4711,
+                  "mutability": "mutable",
+                  "name": "bid",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4716,
+                  "src": "2616:16:22",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Bid_$4592_calldata_ptr",
+                    "typeString": "struct IMarket.Bid"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 4710,
+                    "name": "Bid",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4592,
+                    "src": "2616:3:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Bid_$4592_storage_ptr",
+                      "typeString": "struct IMarket.Bid"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4713,
+                  "mutability": "mutable",
+                  "name": "spender",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4716,
+                  "src": "2643:15:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4712,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2643:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2579:86:22"
+            },
+            "returnParameters": {
+              "id": 4715,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2682:0:22"
+            },
+            "scope": 4731,
+            "src": "2564:119:22",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "776a0835",
+            "id": 4723,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeBid",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4721,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4718,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4723,
+                  "src": "2710:15:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4717,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2710:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4720,
+                  "mutability": "mutable",
+                  "name": "bidder",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4723,
+                  "src": "2727:14:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4719,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2727:7:22",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2709:33:22"
+            },
+            "returnParameters": {
+              "id": 4722,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2751:0:22"
+            },
+            "scope": 4731,
+            "src": "2691:61:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "b501806e",
+            "id": 4730,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "acceptBid",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4728,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4725,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4730,
+                  "src": "2779:15:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4724,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2779:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4727,
+                  "mutability": "mutable",
+                  "name": "expectedBid",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4730,
+                  "src": "2796:24:22",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Bid_$4592_calldata_ptr",
+                    "typeString": "struct IMarket.Bid"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 4726,
+                    "name": "Bid",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4592,
+                    "src": "2796:3:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Bid_$4592_storage_ptr",
+                      "typeString": "struct IMarket.Bid"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2778:43:22"
+            },
+            "returnParameters": {
+              "id": 4729,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2830:0:22"
+            },
+            "scope": 4731,
+            "src": "2760:71:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 4732,
+        "src": "200:2634:22"
+      }
+    ],
+    "src": "39:2795:22"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/IMarket.sol",
+      "exportedSymbols": {
+        "IMarket": [
+          4731
+        ]
+      },
+      "license": "GPL-3.0"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.6",
+            ".8"
+          ]
+        },
+        "id": 4579,
+        "name": "PragmaDirective",
+        "src": "39:22:22"
+      },
+      {
+        "attributes": {
+          "literals": [
+            "experimental",
+            "ABIEncoderV2"
+          ]
+        },
+        "id": 4580,
+        "name": "PragmaDirective",
+        "src": "63:33:22"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 3448,
+          "absolutePath": "project:/contracts/Decimal.sol",
+          "file": "./Decimal.sol",
+          "scope": 4732,
+          "symbolAliases": [
+            {
+              "foreign": {
+                "attributes": {
+                  "argumentTypes": null,
+                  "overloadedDeclarations": [
+                    null
+                  ],
+                  "referencedDeclaration": null,
+                  "type": null,
+                  "value": "Decimal"
+                },
+                "id": 4581,
+                "name": "Identifier",
+                "src": "108:7:22"
+              },
+              "local": null
+            }
+          ],
+          "unitAlias": ""
+        },
+        "id": 4582,
+        "name": "ImportDirective",
+        "src": "100:38:22"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            4731
+          ],
+          "name": "IMarket",
+          "scope": 4732
+        },
+        "children": [
+          {
+            "attributes": {
+              "text": "@title Interface for Zora Protocol's Market"
+            },
+            "id": 4583,
+            "name": "StructuredDocumentation",
+            "src": "142:56:22"
+          },
+          {
+            "attributes": {
+              "canonicalName": "IMarket.Bid",
+              "name": "Bid",
+              "scope": 4731,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "overrides": null,
+                  "scope": 4592,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 4584,
+                    "name": "ElementaryTypeName",
+                    "src": "292:7:22"
+                  }
+                ],
+                "id": 4585,
+                "name": "VariableDeclaration",
+                "src": "292:14:22"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "bidder",
+                  "overrides": null,
+                  "scope": 4592,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "address",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "stateMutability": "nonpayable",
+                      "type": "address"
+                    },
+                    "id": 4586,
+                    "name": "ElementaryTypeName",
+                    "src": "438:7:22"
+                  }
+                ],
+                "id": 4587,
+                "name": "VariableDeclaration",
+                "src": "438:14:22"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "recipient",
+                  "overrides": null,
+                  "scope": 4592,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "address",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "stateMutability": "nonpayable",
+                      "type": "address"
+                    },
+                    "id": 4588,
+                    "name": "ElementaryTypeName",
+                    "src": "500:7:22"
+                  }
+                ],
+                "id": 4589,
+                "name": "VariableDeclaration",
+                "src": "500:17:22"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "sellOnShare",
+                  "overrides": null,
+                  "scope": 4592,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "struct Decimal.D256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "Decimal.D256",
+                      "referencedDeclaration": 3384,
+                      "type": "struct Decimal.D256"
+                    },
+                    "id": 4590,
+                    "name": "UserDefinedTypeName",
+                    "src": "586:12:22"
+                  }
+                ],
+                "id": 4591,
+                "name": "VariableDeclaration",
+                "src": "586:24:22"
+              }
+            ],
+            "id": 4592,
+            "name": "StructDefinition",
+            "src": "225:393:22"
+          },
+          {
+            "attributes": {
+              "canonicalName": "IMarket.BidShares",
+              "name": "BidShares",
+              "scope": 4731,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "prevOwner",
+                  "overrides": null,
+                  "scope": 4599,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "struct Decimal.D256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "Decimal.D256",
+                      "referencedDeclaration": 3384,
+                      "type": "struct Decimal.D256"
+                    },
+                    "id": 4593,
+                    "name": "UserDefinedTypeName",
+                    "src": "922:12:22"
+                  }
+                ],
+                "id": 4594,
+                "name": "VariableDeclaration",
+                "src": "922:22:22"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "creator",
+                  "overrides": null,
+                  "scope": 4599,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "struct Decimal.D256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "Decimal.D256",
+                      "referencedDeclaration": 3384,
+                      "type": "struct Decimal.D256"
+                    },
+                    "id": 4595,
+                    "name": "UserDefinedTypeName",
+                    "src": "1028:12:22"
+                  }
+                ],
+                "id": 4596,
+                "name": "VariableDeclaration",
+                "src": "1028:20:22"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "owner",
+                  "overrides": null,
+                  "scope": 4599,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "struct Decimal.D256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "Decimal.D256",
+                      "referencedDeclaration": 3384,
+                      "type": "struct Decimal.D256"
+                    },
+                    "id": 4597,
+                    "name": "UserDefinedTypeName",
+                    "src": "1138:12:22"
+                  }
+                ],
+                "id": 4598,
+                "name": "VariableDeclaration",
+                "src": "1138:18:22"
+              }
+            ],
+            "id": 4599,
+            "name": "StructDefinition",
+            "src": "821:343:22"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "BidCreated"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4605,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4600,
+                        "name": "ElementaryTypeName",
+                        "src": "1189:7:22"
+                      }
+                    ],
+                    "id": 4601,
+                    "name": "VariableDeclaration",
+                    "src": "1189:23:22"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "bid",
+                      "overrides": null,
+                      "scope": 4605,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "struct IMarket.Bid",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "Bid",
+                          "referencedDeclaration": 4592,
+                          "type": "struct IMarket.Bid"
+                        },
+                        "id": 4602,
+                        "name": "UserDefinedTypeName",
+                        "src": "1214:3:22"
+                      }
+                    ],
+                    "id": 4603,
+                    "name": "VariableDeclaration",
+                    "src": "1214:7:22"
+                  }
+                ],
+                "id": 4604,
+                "name": "ParameterList",
+                "src": "1188:34:22"
+              }
+            ],
+            "id": 4605,
+            "name": "EventDefinition",
+            "src": "1172:51:22"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "BidRemoved"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4611,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4606,
+                        "name": "ElementaryTypeName",
+                        "src": "1246:7:22"
+                      }
+                    ],
+                    "id": 4607,
+                    "name": "VariableDeclaration",
+                    "src": "1246:23:22"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "bid",
+                      "overrides": null,
+                      "scope": 4611,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "struct IMarket.Bid",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "Bid",
+                          "referencedDeclaration": 4592,
+                          "type": "struct IMarket.Bid"
+                        },
+                        "id": 4608,
+                        "name": "UserDefinedTypeName",
+                        "src": "1271:3:22"
+                      }
+                    ],
+                    "id": 4609,
+                    "name": "VariableDeclaration",
+                    "src": "1271:7:22"
+                  }
+                ],
+                "id": 4610,
+                "name": "ParameterList",
+                "src": "1245:34:22"
+              }
+            ],
+            "id": 4611,
+            "name": "EventDefinition",
+            "src": "1229:51:22"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "BidFinalized"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4617,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4612,
+                        "name": "ElementaryTypeName",
+                        "src": "1305:7:22"
+                      }
+                    ],
+                    "id": 4613,
+                    "name": "VariableDeclaration",
+                    "src": "1305:23:22"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "bid",
+                      "overrides": null,
+                      "scope": 4617,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "struct IMarket.Bid",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "Bid",
+                          "referencedDeclaration": 4592,
+                          "type": "struct IMarket.Bid"
+                        },
+                        "id": 4614,
+                        "name": "UserDefinedTypeName",
+                        "src": "1330:3:22"
+                      }
+                    ],
+                    "id": 4615,
+                    "name": "VariableDeclaration",
+                    "src": "1330:7:22"
+                  }
+                ],
+                "id": 4616,
+                "name": "ParameterList",
+                "src": "1304:34:22"
+              }
+            ],
+            "id": 4617,
+            "name": "EventDefinition",
+            "src": "1286:53:22"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "AskCreated"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4623,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4618,
+                        "name": "ElementaryTypeName",
+                        "src": "1362:7:22"
+                      }
+                    ],
+                    "id": 4619,
+                    "name": "VariableDeclaration",
+                    "src": "1362:23:22"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "ask",
+                      "overrides": null,
+                      "scope": 4623,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4620,
+                        "name": "ElementaryTypeName",
+                        "src": "1387:7:22"
+                      }
+                    ],
+                    "id": 4621,
+                    "name": "VariableDeclaration",
+                    "src": "1387:11:22"
+                  }
+                ],
+                "id": 4622,
+                "name": "ParameterList",
+                "src": "1361:38:22"
+              }
+            ],
+            "id": 4623,
+            "name": "EventDefinition",
+            "src": "1345:55:22"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "AskRemoved"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4629,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4624,
+                        "name": "ElementaryTypeName",
+                        "src": "1423:7:22"
+                      }
+                    ],
+                    "id": 4625,
+                    "name": "VariableDeclaration",
+                    "src": "1423:23:22"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "ask",
+                      "overrides": null,
+                      "scope": 4629,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4626,
+                        "name": "ElementaryTypeName",
+                        "src": "1448:7:22"
+                      }
+                    ],
+                    "id": 4627,
+                    "name": "VariableDeclaration",
+                    "src": "1448:11:22"
+                  }
+                ],
+                "id": 4628,
+                "name": "ParameterList",
+                "src": "1422:38:22"
+              }
+            ],
+            "id": 4629,
+            "name": "EventDefinition",
+            "src": "1406:55:22"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "BidShareUpdated"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4635,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4630,
+                        "name": "ElementaryTypeName",
+                        "src": "1489:7:22"
+                      }
+                    ],
+                    "id": 4631,
+                    "name": "VariableDeclaration",
+                    "src": "1489:23:22"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "bidShares",
+                      "overrides": null,
+                      "scope": 4635,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "struct IMarket.BidShares",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "BidShares",
+                          "referencedDeclaration": 4599,
+                          "type": "struct IMarket.BidShares"
+                        },
+                        "id": 4632,
+                        "name": "UserDefinedTypeName",
+                        "src": "1514:9:22"
+                      }
+                    ],
+                    "id": 4633,
+                    "name": "VariableDeclaration",
+                    "src": "1514:19:22"
+                  }
+                ],
+                "id": 4634,
+                "name": "ParameterList",
+                "src": "1488:46:22"
+              }
+            ],
+            "id": 4635,
+            "name": "EventDefinition",
+            "src": "1467:68:22"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "ad827dc4",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "bidForTokenBidder",
+              "overrides": null,
+              "scope": 4731,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4644,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4636,
+                        "name": "ElementaryTypeName",
+                        "src": "1570:7:22"
+                      }
+                    ],
+                    "id": 4637,
+                    "name": "VariableDeclaration",
+                    "src": "1570:15:22"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "bidder",
+                      "overrides": null,
+                      "scope": 4644,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 4638,
+                        "name": "ElementaryTypeName",
+                        "src": "1587:7:22"
+                      }
+                    ],
+                    "id": 4639,
+                    "name": "VariableDeclaration",
+                    "src": "1587:14:22"
+                  }
+                ],
+                "id": 4640,
+                "name": "ParameterList",
+                "src": "1569:33:22"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 4644,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "struct IMarket.Bid",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "Bid",
+                          "referencedDeclaration": 4592,
+                          "type": "struct IMarket.Bid"
+                        },
+                        "id": 4641,
+                        "name": "UserDefinedTypeName",
+                        "src": "1653:3:22"
+                      }
+                    ],
+                    "id": 4642,
+                    "name": "VariableDeclaration",
+                    "src": "1653:10:22"
+                  }
+                ],
+                "id": 4643,
+                "name": "ParameterList",
+                "src": "1652:12:22"
+              }
+            ],
+            "id": 4644,
+            "name": "FunctionDefinition",
+            "src": "1543:122:22"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "578064f6",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "currentAskForToken",
+              "overrides": null,
+              "scope": 4731,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4651,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4645,
+                        "name": "ElementaryTypeName",
+                        "src": "1701:7:22"
+                      }
+                    ],
+                    "id": 4646,
+                    "name": "VariableDeclaration",
+                    "src": "1701:15:22"
+                  }
+                ],
+                "id": 4647,
+                "name": "ParameterList",
+                "src": "1700:17:22"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 4651,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4648,
+                        "name": "ElementaryTypeName",
+                        "src": "1768:7:22"
+                      }
+                    ],
+                    "id": 4649,
+                    "name": "VariableDeclaration",
+                    "src": "1768:7:22"
+                  }
+                ],
+                "id": 4650,
+                "name": "ParameterList",
+                "src": "1767:9:22"
+              }
+            ],
+            "id": 4651,
+            "name": "FunctionDefinition",
+            "src": "1673:104:22"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "f9ce0582",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "bidSharesForToken",
+              "overrides": null,
+              "scope": 4731,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4658,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4652,
+                        "name": "ElementaryTypeName",
+                        "src": "1812:7:22"
+                      }
+                    ],
+                    "id": 4653,
+                    "name": "VariableDeclaration",
+                    "src": "1812:15:22"
+                  }
+                ],
+                "id": 4654,
+                "name": "ParameterList",
+                "src": "1811:17:22"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 4658,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "struct IMarket.BidShares",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "BidShares",
+                          "referencedDeclaration": 4599,
+                          "type": "struct IMarket.BidShares"
+                        },
+                        "id": 4655,
+                        "name": "UserDefinedTypeName",
+                        "src": "1879:9:22"
+                      }
+                    ],
+                    "id": 4656,
+                    "name": "VariableDeclaration",
+                    "src": "1879:16:22"
+                  }
+                ],
+                "id": 4657,
+                "name": "ParameterList",
+                "src": "1878:18:22"
+              }
+            ],
+            "id": 4658,
+            "name": "FunctionDefinition",
+            "src": "1785:112:22"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "02e8fe13",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "isValidBid",
+              "overrides": null,
+              "scope": 4731,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4667,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4659,
+                        "name": "ElementaryTypeName",
+                        "src": "1925:7:22"
+                      }
+                    ],
+                    "id": 4660,
+                    "name": "VariableDeclaration",
+                    "src": "1925:15:22"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "bidAmount",
+                      "overrides": null,
+                      "scope": 4667,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4661,
+                        "name": "ElementaryTypeName",
+                        "src": "1942:7:22"
+                      }
+                    ],
+                    "id": 4662,
+                    "name": "VariableDeclaration",
+                    "src": "1942:17:22"
+                  }
+                ],
+                "id": 4663,
+                "name": "ParameterList",
+                "src": "1924:36:22"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 4667,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 4664,
+                        "name": "ElementaryTypeName",
+                        "src": "2011:4:22"
+                      }
+                    ],
+                    "id": 4665,
+                    "name": "VariableDeclaration",
+                    "src": "2011:4:22"
+                  }
+                ],
+                "id": 4666,
+                "name": "ParameterList",
+                "src": "2010:6:22"
+              }
+            ],
+            "id": 4667,
+            "name": "FunctionDefinition",
+            "src": "1905:112:22"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "360636eb",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "isValidBidShares",
+              "overrides": null,
+              "scope": 4731,
+              "stateMutability": "pure",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "bidShares",
+                      "overrides": null,
+                      "scope": 4674,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "struct IMarket.BidShares",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "BidShares",
+                          "referencedDeclaration": 4599,
+                          "type": "struct IMarket.BidShares"
+                        },
+                        "id": 4668,
+                        "name": "UserDefinedTypeName",
+                        "src": "2051:9:22"
+                      }
+                    ],
+                    "id": 4669,
+                    "name": "VariableDeclaration",
+                    "src": "2051:28:22"
+                  }
+                ],
+                "id": 4670,
+                "name": "ParameterList",
+                "src": "2050:30:22"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 4674,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 4671,
+                        "name": "ElementaryTypeName",
+                        "src": "2131:4:22"
+                      }
+                    ],
+                    "id": 4672,
+                    "name": "VariableDeclaration",
+                    "src": "2131:4:22"
+                  }
+                ],
+                "id": 4673,
+                "name": "ParameterList",
+                "src": "2130:6:22"
+              }
+            ],
+            "id": 4674,
+            "name": "FunctionDefinition",
+            "src": "2025:112:22"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "b920c123",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "splitShare",
+              "overrides": null,
+              "scope": 4731,
+              "stateMutability": "pure",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "sharePercentage",
+                      "overrides": null,
+                      "scope": 4683,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "struct Decimal.D256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "Decimal.D256",
+                          "referencedDeclaration": 3384,
+                          "type": "struct Decimal.D256"
+                        },
+                        "id": 4675,
+                        "name": "UserDefinedTypeName",
+                        "src": "2165:12:22"
+                      }
+                    ],
+                    "id": 4676,
+                    "name": "VariableDeclaration",
+                    "src": "2165:37:22"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "amount",
+                      "overrides": null,
+                      "scope": 4683,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4677,
+                        "name": "ElementaryTypeName",
+                        "src": "2204:7:22"
+                      }
+                    ],
+                    "id": 4678,
+                    "name": "VariableDeclaration",
+                    "src": "2204:14:22"
+                  }
+                ],
+                "id": 4679,
+                "name": "ParameterList",
+                "src": "2164:55:22"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 4683,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4680,
+                        "name": "ElementaryTypeName",
+                        "src": "2270:7:22"
+                      }
+                    ],
+                    "id": 4681,
+                    "name": "VariableDeclaration",
+                    "src": "2270:7:22"
+                  }
+                ],
+                "id": 4682,
+                "name": "ParameterList",
+                "src": "2269:9:22"
+              }
+            ],
+            "id": 4683,
+            "name": "FunctionDefinition",
+            "src": "2145:134:22"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "75cb2672",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "configure",
+              "overrides": null,
+              "scope": 4731,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "mediaContractAddress",
+                      "overrides": null,
+                      "scope": 4688,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 4684,
+                        "name": "ElementaryTypeName",
+                        "src": "2306:7:22"
+                      }
+                    ],
+                    "id": 4685,
+                    "name": "VariableDeclaration",
+                    "src": "2306:28:22"
+                  }
+                ],
+                "id": 4686,
+                "name": "ParameterList",
+                "src": "2305:30:22"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4687,
+                "name": "ParameterList",
+                "src": "2344:0:22"
+              }
+            ],
+            "id": 4688,
+            "name": "FunctionDefinition",
+            "src": "2287:58:22"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "eb55683a",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "setBidShares",
+              "overrides": null,
+              "scope": 4731,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4695,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4689,
+                        "name": "ElementaryTypeName",
+                        "src": "2375:7:22"
+                      }
+                    ],
+                    "id": 4690,
+                    "name": "VariableDeclaration",
+                    "src": "2375:15:22"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "bidShares",
+                      "overrides": null,
+                      "scope": 4695,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "struct IMarket.BidShares",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "BidShares",
+                          "referencedDeclaration": 4599,
+                          "type": "struct IMarket.BidShares"
+                        },
+                        "id": 4691,
+                        "name": "UserDefinedTypeName",
+                        "src": "2392:9:22"
+                      }
+                    ],
+                    "id": 4692,
+                    "name": "VariableDeclaration",
+                    "src": "2392:28:22"
+                  }
+                ],
+                "id": 4693,
+                "name": "ParameterList",
+                "src": "2374:47:22"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4694,
+                "name": "ParameterList",
+                "src": "2439:0:22"
+              }
+            ],
+            "id": 4695,
+            "name": "FunctionDefinition",
+            "src": "2353:87:22"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "e49f8768",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "setAsk",
+              "overrides": null,
+              "scope": 4731,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4702,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4696,
+                        "name": "ElementaryTypeName",
+                        "src": "2464:7:22"
+                      }
+                    ],
+                    "id": 4697,
+                    "name": "VariableDeclaration",
+                    "src": "2464:15:22"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "ask",
+                      "overrides": null,
+                      "scope": 4702,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4698,
+                        "name": "ElementaryTypeName",
+                        "src": "2481:7:22"
+                      }
+                    ],
+                    "id": 4699,
+                    "name": "VariableDeclaration",
+                    "src": "2481:11:22"
+                  }
+                ],
+                "id": 4700,
+                "name": "ParameterList",
+                "src": "2463:30:22"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4701,
+                "name": "ParameterList",
+                "src": "2502:0:22"
+              }
+            ],
+            "id": 4702,
+            "name": "FunctionDefinition",
+            "src": "2448:55:22"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "28220f35",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "removeAsk",
+              "overrides": null,
+              "scope": 4731,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4707,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4703,
+                        "name": "ElementaryTypeName",
+                        "src": "2530:7:22"
+                      }
+                    ],
+                    "id": 4704,
+                    "name": "VariableDeclaration",
+                    "src": "2530:15:22"
+                  }
+                ],
+                "id": 4705,
+                "name": "ParameterList",
+                "src": "2529:17:22"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4706,
+                "name": "ParameterList",
+                "src": "2555:0:22"
+              }
+            ],
+            "id": 4707,
+            "name": "FunctionDefinition",
+            "src": "2511:45:22"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "7ccb5f6f",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "setBid",
+              "overrides": null,
+              "scope": 4731,
+              "stateMutability": "payable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4716,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4708,
+                        "name": "ElementaryTypeName",
+                        "src": "2590:7:22"
+                      }
+                    ],
+                    "id": 4709,
+                    "name": "VariableDeclaration",
+                    "src": "2590:15:22"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "bid",
+                      "overrides": null,
+                      "scope": 4716,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "struct IMarket.Bid",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "Bid",
+                          "referencedDeclaration": 4592,
+                          "type": "struct IMarket.Bid"
+                        },
+                        "id": 4710,
+                        "name": "UserDefinedTypeName",
+                        "src": "2616:3:22"
+                      }
+                    ],
+                    "id": 4711,
+                    "name": "VariableDeclaration",
+                    "src": "2616:16:22"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "spender",
+                      "overrides": null,
+                      "scope": 4716,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 4712,
+                        "name": "ElementaryTypeName",
+                        "src": "2643:7:22"
+                      }
+                    ],
+                    "id": 4713,
+                    "name": "VariableDeclaration",
+                    "src": "2643:15:22"
+                  }
+                ],
+                "id": 4714,
+                "name": "ParameterList",
+                "src": "2579:86:22"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4715,
+                "name": "ParameterList",
+                "src": "2682:0:22"
+              }
+            ],
+            "id": 4716,
+            "name": "FunctionDefinition",
+            "src": "2564:119:22"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "776a0835",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "removeBid",
+              "overrides": null,
+              "scope": 4731,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4723,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4717,
+                        "name": "ElementaryTypeName",
+                        "src": "2710:7:22"
+                      }
+                    ],
+                    "id": 4718,
+                    "name": "VariableDeclaration",
+                    "src": "2710:15:22"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "bidder",
+                      "overrides": null,
+                      "scope": 4723,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 4719,
+                        "name": "ElementaryTypeName",
+                        "src": "2727:7:22"
+                      }
+                    ],
+                    "id": 4720,
+                    "name": "VariableDeclaration",
+                    "src": "2727:14:22"
+                  }
+                ],
+                "id": 4721,
+                "name": "ParameterList",
+                "src": "2709:33:22"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4722,
+                "name": "ParameterList",
+                "src": "2751:0:22"
+              }
+            ],
+            "id": 4723,
+            "name": "FunctionDefinition",
+            "src": "2691:61:22"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "b501806e",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "acceptBid",
+              "overrides": null,
+              "scope": 4731,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4730,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4724,
+                        "name": "ElementaryTypeName",
+                        "src": "2779:7:22"
+                      }
+                    ],
+                    "id": 4725,
+                    "name": "VariableDeclaration",
+                    "src": "2779:15:22"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "expectedBid",
+                      "overrides": null,
+                      "scope": 4730,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "struct IMarket.Bid",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "Bid",
+                          "referencedDeclaration": 4592,
+                          "type": "struct IMarket.Bid"
+                        },
+                        "id": 4726,
+                        "name": "UserDefinedTypeName",
+                        "src": "2796:3:22"
+                      }
+                    ],
+                    "id": 4727,
+                    "name": "VariableDeclaration",
+                    "src": "2796:24:22"
+                  }
+                ],
+                "id": 4728,
+                "name": "ParameterList",
+                "src": "2778:43:22"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4729,
+                "name": "ParameterList",
+                "src": "2830:0:22"
+              }
+            ],
+            "id": 4730,
+            "name": "FunctionDefinition",
+            "src": "2760:71:22"
+          }
+        ],
+        "id": 4731,
+        "name": "ContractDefinition",
+        "src": "200:2634:22"
+      }
+    ],
+    "id": 4732,
+    "name": "SourceUnit",
+    "src": "39:2795:22"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.8+commit.0bbfe453.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.4",
+  "updatedAt": "2022-02-18T14:15:07.272Z",
+  "devdoc": {
+    "methods": {},
+    "title": "Interface for Zora Protocol's Market"
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

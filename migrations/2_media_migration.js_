@@ -1,0 +1,5 @@
+const Media = artifacts.require("Media");
+
+module.exports = function (deployer) {
+  deployer.deploy(Media, '0xb5bd84064ea41115ba57f47071b90082e9d2f35b');
+};

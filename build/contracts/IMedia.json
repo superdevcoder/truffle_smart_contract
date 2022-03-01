@@ -1,0 +1,4285 @@
+{
+  "contractName": "IMedia",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_tokenId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "_uri",
+          "type": "string"
+        }
+      ],
+      "name": "TokenMetadataURIUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_tokenId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "_uri",
+          "type": "string"
+        }
+      ],
+      "name": "TokenURIUpdated",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "tokenMetadataURI",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "tokenURI",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "metadataURI",
+              "type": "string"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "contentHash",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "metadataHash",
+              "type": "bytes32"
+            }
+          ],
+          "internalType": "struct IMedia.MediaData",
+          "name": "data",
+          "type": "tuple"
+        }
+      ],
+      "name": "mint",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "creator",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "tokenURI",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "metadataURI",
+              "type": "string"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "contentHash",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "metadataHash",
+              "type": "bytes32"
+            }
+          ],
+          "internalType": "struct IMedia.MediaData",
+          "name": "data",
+          "type": "tuple"
+        },
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "prevOwner",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "creator",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "owner",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct IMarket.BidShares",
+          "name": "bidShares",
+          "type": "tuple"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "deadline",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint8",
+              "name": "v",
+              "type": "uint8"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "r",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "s",
+              "type": "bytes32"
+            }
+          ],
+          "internalType": "struct IMedia.EIP712Signature",
+          "name": "sig",
+          "type": "tuple"
+        }
+      ],
+      "name": "mintWithSig",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        }
+      ],
+      "name": "auctionTransfer",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "ask",
+          "type": "uint256"
+        }
+      ],
+      "name": "setAsk",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "removeAsk",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "bidder",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "recipient",
+              "type": "address"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "sellOnShare",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct IMarket.Bid",
+          "name": "bid",
+          "type": "tuple"
+        }
+      ],
+      "name": "setBid",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "removeBid",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "bidder",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "recipient",
+              "type": "address"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "value",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct Decimal.D256",
+              "name": "sellOnShare",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct IMarket.Bid",
+          "name": "bid",
+          "type": "tuple"
+        }
+      ],
+      "name": "acceptBid",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "revokeApproval",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "tokenURI",
+          "type": "string"
+        }
+      ],
+      "name": "updateTokenURI",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getTokenCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "metadataURI",
+          "type": "string"
+        }
+      ],
+      "name": "updateTokenMetadataURI",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "deadline",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint8",
+              "name": "v",
+              "type": "uint8"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "r",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "s",
+              "type": "bytes32"
+            }
+          ],
+          "internalType": "struct IMedia.EIP712Signature",
+          "name": "sig",
+          "type": "tuple"
+        }
+      ],
+      "name": "permit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.8+commit.0bbfe453\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_tokenId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"_uri\",\"type\":\"string\"}],\"name\":\"TokenMetadataURIUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_tokenId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"_uri\",\"type\":\"string\"}],\"name\":\"TokenURIUpdated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"bidder\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"sellOnShare\",\"type\":\"tuple\"}],\"internalType\":\"struct IMarket.Bid\",\"name\":\"bid\",\"type\":\"tuple\"}],\"name\":\"acceptBid\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"}],\"name\":\"auctionTransfer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getTokenCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"tokenURI\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"metadataURI\",\"type\":\"string\"},{\"internalType\":\"bytes32\",\"name\":\"contentHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"metadataHash\",\"type\":\"bytes32\"}],\"internalType\":\"struct IMedia.MediaData\",\"name\":\"data\",\"type\":\"tuple\"}],\"name\":\"mint\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"creator\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"tokenURI\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"metadataURI\",\"type\":\"string\"},{\"internalType\":\"bytes32\",\"name\":\"contentHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"metadataHash\",\"type\":\"bytes32\"}],\"internalType\":\"struct IMedia.MediaData\",\"name\":\"data\",\"type\":\"tuple\"},{\"components\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"prevOwner\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"creator\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"owner\",\"type\":\"tuple\"}],\"internalType\":\"struct IMarket.BidShares\",\"name\":\"bidShares\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"internalType\":\"struct IMedia.EIP712Signature\",\"name\":\"sig\",\"type\":\"tuple\"}],\"name\":\"mintWithSig\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"v\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"r\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"internalType\":\"struct IMedia.EIP712Signature\",\"name\":\"sig\",\"type\":\"tuple\"}],\"name\":\"permit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"removeAsk\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"removeBid\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"revokeApproval\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"ask\",\"type\":\"uint256\"}],\"name\":\"setAsk\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"bidder\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"internalType\":\"struct Decimal.D256\",\"name\":\"sellOnShare\",\"type\":\"tuple\"}],\"internalType\":\"struct IMarket.Bid\",\"name\":\"bid\",\"type\":\"tuple\"}],\"name\":\"setBid\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"tokenMetadataURI\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"metadataURI\",\"type\":\"string\"}],\"name\":\"updateTokenMetadataURI\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"tokenURI\",\"type\":\"string\"}],\"name\":\"updateTokenURI\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"auctionTransfer(uint256,address)\":{\"details\":\"This can only be called by the auction contract specified at deployment\"}},\"title\":\"Interface for Zora Protocol's Media\"},\"userdoc\":{\"methods\":{\"auctionTransfer(uint256,address)\":{\"notice\":\"Transfer the token with the given ID to a given address. Save the previous owner before the transfer, in case there is a sell-on fee.\"},\"mint((string,string,bytes32,bytes32))\":{\"notice\":\"Mint new media for msg.sender.\"},\"mintWithSig(address,(string,string,bytes32,bytes32),((uint256),(uint256),(uint256)),(uint256,uint8,bytes32,bytes32))\":{\"notice\":\"EIP-712 mintWithSig method. Mints new media for a creator given a valid signature.\"},\"permit(address,uint256,(uint256,uint8,bytes32,bytes32))\":{\"notice\":\"EIP-712 permit method. Sets an approved spender given a valid signature.\"},\"removeAsk(uint256)\":{\"notice\":\"Remove the ask on a piece of media\"},\"removeBid(uint256)\":{\"notice\":\"Remove the bid on a piece of media\"},\"revokeApproval(uint256)\":{\"notice\":\"Revoke approval for a piece of media\"},\"setAsk(uint256,uint256)\":{\"notice\":\"Set the ask on a piece of media\"},\"setBid(uint256,(uint256,address,address,(uint256)))\":{\"notice\":\"Set the bid on a piece of media\"},\"tokenMetadataURI(uint256)\":{\"notice\":\"Return the metadata URI for a piece of media given the token URI\"},\"updateTokenMetadataURI(uint256,string)\":{\"notice\":\"Update the token metadata uri\"},\"updateTokenURI(uint256,string)\":{\"notice\":\"Update the token URI\"}}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/IMedia.sol\":\"IMedia\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x9a9cf02622cd7a64261b10534fc3260449da25c98c9e96d1b4ae8110a20e5806\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2df142592d1dc267d9549049ee3317fa190d2f87eaa565f86ab05ec83f7ab8f5\",\"dweb:/ipfs/QmSkJtcfWo7c42KnL5hho6GFxK6HRNV91XABx1P7xDtfLV\"]},\"project:/contracts/Decimal.sol\":{\"keccak256\":\"0xdf9283e27845035f000ecfe169ea7f6a2873633fa357285adf53d4b738513abc\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://e9a284788f11c6cf7d9896ef0571dc8d290e67ef84b1810765f238a973763ba4\",\"dweb:/ipfs/QmTxiAdWDdEhLoB5UxChzoyhFDEXv5xoKCg6BgEbzKymjT\"]},\"project:/contracts/IMarket.sol\":{\"keccak256\":\"0xc0469db5e8708c973bf85076b880bc255d1be48941e1d003d5af07eb26750385\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://1a0eb23ef4663ddd07e8168a600f9f7ecf69ead9b9c5835969cdf83de3d3c0b0\",\"dweb:/ipfs/QmXMkhipGDffeaLYuKDx5PBCvGDebFzP6oox5J6Au2k1ex\"]},\"project:/contracts/IMedia.sol\":{\"keccak256\":\"0x428660b2eff4b7ffeaa33cda8e095b729901a0016c5c997a63bbf81b02c42ff3\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://d1e3c3da4a05949b955372fff8ad4230248fd53eddbae4f522d3b2a92bff57a0\",\"dweb:/ipfs/QmbHVQmvWz68wAZEwP5aGyJbvnhrQJPSg8WxETEqLTmtso\"]},\"project:/contracts/Math.sol\":{\"keccak256\":\"0x991bf77e90b345d6f9e1de722b089076930bd5df7f3d82d381a817e65011a241\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f20bbbc48be8c265eeba9e5d92e737e80bad35d4379d182966738c55b399d7db\",\"dweb:/ipfs/QmW533cx5Zz1muhYcVcwnisDvRKF6yh6iKJFkL8N9YoqPw\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: GPL-3.0\r\n\r\npragma solidity 0.6.8;\r\npragma experimental ABIEncoderV2;\r\n\r\nimport {IMarket} from \"./IMarket.sol\";\r\n\r\n/**\r\n * @title Interface for Zora Protocol's Media\r\n */\r\ninterface IMedia {\r\n    struct EIP712Signature {\r\n        uint256 deadline;\r\n        uint8 v;\r\n        bytes32 r;\r\n        bytes32 s;\r\n    }\r\n\r\n    struct MediaData {\r\n        // A valid URI of the content represented by this token\r\n        string tokenURI;\r\n        // A valid URI of the metadata associated with this token\r\n        string metadataURI;\r\n        // A SHA256 hash of the content pointed to by tokenURI\r\n        bytes32 contentHash;\r\n        // A SHA256 hash of the content pointed to by metadataURI\r\n        bytes32 metadataHash;\r\n    }\r\n\r\n    event TokenURIUpdated(uint256 indexed _tokenId, address owner, string _uri);\r\n    event TokenMetadataURIUpdated(\r\n        uint256 indexed _tokenId,\r\n        address owner,\r\n        string _uri\r\n    );\r\n\r\n    /**\r\n     * @notice Return the metadata URI for a piece of media given the token URI\r\n     */\r\n    function tokenMetadataURI(uint256 tokenId)\r\n        external\r\n        view\r\n        returns (string memory);\r\n\r\n    /**\r\n     * @notice Mint new media for msg.sender.\r\n     */\r\n    function mint(MediaData calldata data)\r\n        external;\r\n\r\n    /**\r\n     * @notice EIP-712 mintWithSig method. Mints new media for a creator given a valid signature.\r\n     */\r\n    function mintWithSig(\r\n        address creator,\r\n        MediaData calldata data,\r\n        IMarket.BidShares calldata bidShares,\r\n        EIP712Signature calldata sig\r\n    ) external;\r\n\r\n    /**\r\n     * @notice Transfer the token with the given ID to a given address.\r\n     * Save the previous owner before the transfer, in case there is a sell-on fee.\r\n     * @dev This can only be called by the auction contract specified at deployment\r\n     */\r\n    function auctionTransfer(uint256 tokenId, address recipient) external;\r\n\r\n    /**\r\n     * @notice Set the ask on a piece of media\r\n     */\r\n    function setAsk(uint256 tokenId, uint256 ask) external;\r\n\r\n    /**\r\n     * @notice Remove the ask on a piece of media\r\n     */\r\n    function removeAsk(uint256 tokenId) external;\r\n\r\n    /**\r\n     * @notice Set the bid on a piece of media\r\n     */\r\n    function setBid(uint256 tokenId, IMarket.Bid calldata bid)  payable external;\r\n\r\n    /**\r\n     * @notice Remove the bid on a piece of media\r\n     */\r\n    function removeBid(uint256 tokenId) external;\r\n\r\n    function acceptBid(uint256 tokenId, IMarket.Bid calldata bid) external;\r\n\r\n    /**\r\n     * @notice Revoke approval for a piece of media\r\n     */\r\n    function revokeApproval(uint256 tokenId) external;\r\n\r\n    /**\r\n     * @notice Update the token URI\r\n     */\r\n    function updateTokenURI(uint256 tokenId, string calldata tokenURI) external;\r\n\r\n    // get token count\r\n    function getTokenCount() external view returns(uint256);\r\n\r\n    /**\r\n     * @notice Update the token metadata uri\r\n     */\r\n    function updateTokenMetadataURI(\r\n        uint256 tokenId,\r\n        string calldata metadataURI\r\n    ) external;\r\n\r\n    /**\r\n     * @notice EIP-712 permit method. Sets an approved spender given a valid signature.\r\n     */\r\n    function permit(\r\n        address spender,\r\n        uint256 tokenId,\r\n        EIP712Signature calldata sig\r\n    ) external;\r\n}",
+  "sourcePath": "E:\\202202\\lou\\contracts\\contracts\\IMedia.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/IMedia.sol",
+    "exportedSymbols": {
+      "IMedia": [
+        4878
+      ]
+    },
+    "id": 4879,
+    "license": "GPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 4733,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".8"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:22:23"
+      },
+      {
+        "id": 4734,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "63:33:23"
+      },
+      {
+        "absolutePath": "project:/contracts/IMarket.sol",
+        "file": "./IMarket.sol",
+        "id": 4736,
+        "nodeType": "ImportDirective",
+        "scope": 4879,
+        "sourceUnit": 4732,
+        "src": "100:38:23",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "argumentTypes": null,
+              "id": 4735,
+              "name": "IMarket",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": null,
+              "src": "108:7:23",
+              "typeDescriptions": {
+                "typeIdentifier": null,
+                "typeString": null
+              }
+            },
+            "local": null
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 4737,
+          "nodeType": "StructuredDocumentation",
+          "src": "142:55:23",
+          "text": "@title Interface for Zora Protocol's Media"
+        },
+        "fullyImplemented": false,
+        "id": 4878,
+        "linearizedBaseContracts": [
+          4878
+        ],
+        "name": "IMedia",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IMedia.EIP712Signature",
+            "id": 4746,
+            "members": [
+              {
+                "constant": false,
+                "id": 4739,
+                "mutability": "mutable",
+                "name": "deadline",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 4746,
+                "src": "257:16:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 4738,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "257:7:23",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 4741,
+                "mutability": "mutable",
+                "name": "v",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 4746,
+                "src": "284:7:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 4740,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "284:5:23",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 4743,
+                "mutability": "mutable",
+                "name": "r",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 4746,
+                "src": "302:9:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 4742,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "302:7:23",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 4745,
+                "mutability": "mutable",
+                "name": "s",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 4746,
+                "src": "322:9:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 4744,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "322:7:23",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "EIP712Signature",
+            "nodeType": "StructDefinition",
+            "scope": 4878,
+            "src": "223:116:23",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "IMedia.MediaData",
+            "id": 4755,
+            "members": [
+              {
+                "constant": false,
+                "id": 4748,
+                "mutability": "mutable",
+                "name": "tokenURI",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 4755,
+                "src": "440:15:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 4747,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "440:6:23",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 4750,
+                "mutability": "mutable",
+                "name": "metadataURI",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 4755,
+                "src": "533:18:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 4749,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "533:6:23",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 4752,
+                "mutability": "mutable",
+                "name": "contentHash",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 4755,
+                "src": "626:19:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 4751,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "626:7:23",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 4754,
+                "mutability": "mutable",
+                "name": "metadataHash",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 4755,
+                "src": "723:20:23",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 4753,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "723:7:23",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "MediaData",
+            "nodeType": "StructDefinition",
+            "scope": 4878,
+            "src": "347:404:23",
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 4763,
+            "name": "TokenURIUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 4762,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4757,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4763,
+                  "src": "781:24:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4756,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "781:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4759,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "owner",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4763,
+                  "src": "807:13:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4758,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "807:7:23",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4761,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_uri",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4763,
+                  "src": "822:11:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 4760,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "822:6:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "780:54:23"
+            },
+            "src": "759:76:23"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 4771,
+            "name": "TokenMetadataURIUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 4770,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4765,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4771,
+                  "src": "881:24:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4764,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "881:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4767,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "owner",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4771,
+                  "src": "916:13:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4766,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "916:7:23",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4769,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_uri",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4771,
+                  "src": "940:11:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 4768,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "940:6:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "870:88:23"
+            },
+            "src": "841:118:23"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 4772,
+              "nodeType": "StructuredDocumentation",
+              "src": "967:93:23",
+              "text": "@notice Return the metadata URI for a piece of media given the token URI"
+            },
+            "functionSelector": "157c3df9",
+            "id": 4779,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "tokenMetadataURI",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4775,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4774,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4779,
+                  "src": "1092:15:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4773,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1092:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1091:17:23"
+            },
+            "returnParameters": {
+              "id": 4778,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4777,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4779,
+                  "src": "1159:13:23",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 4776,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1159:6:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1158:15:23"
+            },
+            "scope": 4878,
+            "src": "1066:108:23",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 4780,
+              "nodeType": "StructuredDocumentation",
+              "src": "1182:59:23",
+              "text": "@notice Mint new media for msg.sender."
+            },
+            "functionSelector": "0efcb289",
+            "id": 4785,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "mint",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4783,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4782,
+                  "mutability": "mutable",
+                  "name": "data",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4785,
+                  "src": "1261:23:23",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_MediaData_$4755_calldata_ptr",
+                    "typeString": "struct IMedia.MediaData"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 4781,
+                    "name": "MediaData",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4755,
+                    "src": "1261:9:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_MediaData_$4755_storage_ptr",
+                      "typeString": "struct IMedia.MediaData"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1260:25:23"
+            },
+            "returnParameters": {
+              "id": 4784,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1303:0:23"
+            },
+            "scope": 4878,
+            "src": "1247:57:23",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 4786,
+              "nodeType": "StructuredDocumentation",
+              "src": "1312:111:23",
+              "text": "@notice EIP-712 mintWithSig method. Mints new media for a creator given a valid signature."
+            },
+            "functionSelector": "7a7a1202",
+            "id": 4797,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "mintWithSig",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4795,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4788,
+                  "mutability": "mutable",
+                  "name": "creator",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4797,
+                  "src": "1460:15:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4787,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1460:7:23",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4790,
+                  "mutability": "mutable",
+                  "name": "data",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4797,
+                  "src": "1486:23:23",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_MediaData_$4755_calldata_ptr",
+                    "typeString": "struct IMedia.MediaData"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 4789,
+                    "name": "MediaData",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4755,
+                    "src": "1486:9:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_MediaData_$4755_storage_ptr",
+                      "typeString": "struct IMedia.MediaData"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4792,
+                  "mutability": "mutable",
+                  "name": "bidShares",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4797,
+                  "src": "1520:36:23",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_BidShares_$4599_calldata_ptr",
+                    "typeString": "struct IMarket.BidShares"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 4791,
+                    "name": "IMarket.BidShares",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4599,
+                    "src": "1520:17:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_BidShares_$4599_storage_ptr",
+                      "typeString": "struct IMarket.BidShares"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4794,
+                  "mutability": "mutable",
+                  "name": "sig",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4797,
+                  "src": "1567:28:23",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_EIP712Signature_$4746_calldata_ptr",
+                    "typeString": "struct IMedia.EIP712Signature"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 4793,
+                    "name": "EIP712Signature",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4746,
+                    "src": "1567:15:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_EIP712Signature_$4746_storage_ptr",
+                      "typeString": "struct IMedia.EIP712Signature"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1449:153:23"
+            },
+            "returnParameters": {
+              "id": 4796,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1611:0:23"
+            },
+            "scope": 4878,
+            "src": "1429:183:23",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 4798,
+              "nodeType": "StructuredDocumentation",
+              "src": "1620:255:23",
+              "text": "@notice Transfer the token with the given ID to a given address.\nSave the previous owner before the transfer, in case there is a sell-on fee.\n@dev This can only be called by the auction contract specified at deployment"
+            },
+            "functionSelector": "f6b630f0",
+            "id": 4805,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "auctionTransfer",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4803,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4800,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4805,
+                  "src": "1906:15:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4799,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1906:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4802,
+                  "mutability": "mutable",
+                  "name": "recipient",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4805,
+                  "src": "1923:17:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4801,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1923:7:23",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1905:36:23"
+            },
+            "returnParameters": {
+              "id": 4804,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1950:0:23"
+            },
+            "scope": 4878,
+            "src": "1881:70:23",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 4806,
+              "nodeType": "StructuredDocumentation",
+              "src": "1959:60:23",
+              "text": "@notice Set the ask on a piece of media"
+            },
+            "functionSelector": "e49f8768",
+            "id": 4813,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setAsk",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4811,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4808,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4813,
+                  "src": "2041:15:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4807,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2041:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4810,
+                  "mutability": "mutable",
+                  "name": "ask",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4813,
+                  "src": "2058:11:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4809,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2058:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2040:30:23"
+            },
+            "returnParameters": {
+              "id": 4812,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2079:0:23"
+            },
+            "scope": 4878,
+            "src": "2025:55:23",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 4814,
+              "nodeType": "StructuredDocumentation",
+              "src": "2088:63:23",
+              "text": "@notice Remove the ask on a piece of media"
+            },
+            "functionSelector": "28220f35",
+            "id": 4819,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeAsk",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4817,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4816,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4819,
+                  "src": "2176:15:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4815,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2176:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2175:17:23"
+            },
+            "returnParameters": {
+              "id": 4818,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2201:0:23"
+            },
+            "scope": 4878,
+            "src": "2157:45:23",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 4820,
+              "nodeType": "StructuredDocumentation",
+              "src": "2210:60:23",
+              "text": "@notice Set the bid on a piece of media"
+            },
+            "functionSelector": "6bbfbb51",
+            "id": 4827,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setBid",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4825,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4822,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4827,
+                  "src": "2292:15:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4821,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2292:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4824,
+                  "mutability": "mutable",
+                  "name": "bid",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4827,
+                  "src": "2309:24:23",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Bid_$4592_calldata_ptr",
+                    "typeString": "struct IMarket.Bid"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 4823,
+                    "name": "IMarket.Bid",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4592,
+                    "src": "2309:11:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Bid_$4592_storage_ptr",
+                      "typeString": "struct IMarket.Bid"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2291:43:23"
+            },
+            "returnParameters": {
+              "id": 4826,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2352:0:23"
+            },
+            "scope": 4878,
+            "src": "2276:77:23",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 4828,
+              "nodeType": "StructuredDocumentation",
+              "src": "2361:63:23",
+              "text": "@notice Remove the bid on a piece of media"
+            },
+            "functionSelector": "b320f459",
+            "id": 4833,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeBid",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4831,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4830,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4833,
+                  "src": "2449:15:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4829,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2449:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2448:17:23"
+            },
+            "returnParameters": {
+              "id": 4832,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2474:0:23"
+            },
+            "scope": 4878,
+            "src": "2430:45:23",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "b501806e",
+            "id": 4840,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "acceptBid",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4838,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4835,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4840,
+                  "src": "2502:15:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4834,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2502:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4837,
+                  "mutability": "mutable",
+                  "name": "bid",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4840,
+                  "src": "2519:24:23",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Bid_$4592_calldata_ptr",
+                    "typeString": "struct IMarket.Bid"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 4836,
+                    "name": "IMarket.Bid",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4592,
+                    "src": "2519:11:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Bid_$4592_storage_ptr",
+                      "typeString": "struct IMarket.Bid"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2501:43:23"
+            },
+            "returnParameters": {
+              "id": 4839,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2553:0:23"
+            },
+            "scope": 4878,
+            "src": "2483:71:23",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 4841,
+              "nodeType": "StructuredDocumentation",
+              "src": "2562:65:23",
+              "text": "@notice Revoke approval for a piece of media"
+            },
+            "functionSelector": "b1e130fc",
+            "id": 4846,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "revokeApproval",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4844,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4843,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4846,
+                  "src": "2657:15:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4842,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2657:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2656:17:23"
+            },
+            "returnParameters": {
+              "id": 4845,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2682:0:23"
+            },
+            "scope": 4878,
+            "src": "2633:50:23",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 4847,
+              "nodeType": "StructuredDocumentation",
+              "src": "2691:49:23",
+              "text": "@notice Update the token URI"
+            },
+            "functionSelector": "18e97fd1",
+            "id": 4854,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateTokenURI",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4852,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4849,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4854,
+                  "src": "2770:15:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4848,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2770:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4851,
+                  "mutability": "mutable",
+                  "name": "tokenURI",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4854,
+                  "src": "2787:24:23",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 4850,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2787:6:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2769:43:23"
+            },
+            "returnParameters": {
+              "id": 4853,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2821:0:23"
+            },
+            "scope": 4878,
+            "src": "2746:76:23",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "78a89567",
+            "id": 4859,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getTokenCount",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4855,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2876:2:23"
+            },
+            "returnParameters": {
+              "id": 4858,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4857,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4859,
+                  "src": "2901:7:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4856,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2901:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2900:9:23"
+            },
+            "scope": 4878,
+            "src": "2854:56:23",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 4860,
+              "nodeType": "StructuredDocumentation",
+              "src": "2918:58:23",
+              "text": "@notice Update the token metadata uri"
+            },
+            "functionSelector": "75682e79",
+            "id": 4867,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateTokenMetadataURI",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4865,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4862,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4867,
+                  "src": "3024:15:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4861,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3024:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4864,
+                  "mutability": "mutable",
+                  "name": "metadataURI",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4867,
+                  "src": "3050:27:23",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 4863,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3050:6:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3013:71:23"
+            },
+            "returnParameters": {
+              "id": 4866,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3093:0:23"
+            },
+            "scope": 4878,
+            "src": "2982:112:23",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 4868,
+              "nodeType": "StructuredDocumentation",
+              "src": "3102:101:23",
+              "text": "@notice EIP-712 permit method. Sets an approved spender given a valid signature."
+            },
+            "functionSelector": "0e2a1778",
+            "id": 4877,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "permit",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4875,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4870,
+                  "mutability": "mutable",
+                  "name": "spender",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4877,
+                  "src": "3235:15:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4869,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3235:7:23",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4872,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4877,
+                  "src": "3261:15:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4871,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3261:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4874,
+                  "mutability": "mutable",
+                  "name": "sig",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4877,
+                  "src": "3287:28:23",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_EIP712Signature_$4746_calldata_ptr",
+                    "typeString": "struct IMedia.EIP712Signature"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 4873,
+                    "name": "EIP712Signature",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 4746,
+                    "src": "3287:15:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_EIP712Signature_$4746_storage_ptr",
+                      "typeString": "struct IMedia.EIP712Signature"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3224:98:23"
+            },
+            "returnParameters": {
+              "id": 4876,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3331:0:23"
+            },
+            "scope": 4878,
+            "src": "3209:123:23",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 4879,
+        "src": "199:3136:23"
+      }
+    ],
+    "src": "39:3296:23"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/IMedia.sol",
+      "exportedSymbols": {
+        "IMedia": [
+          4878
+        ]
+      },
+      "license": "GPL-3.0"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.6",
+            ".8"
+          ]
+        },
+        "id": 4733,
+        "name": "PragmaDirective",
+        "src": "39:22:23"
+      },
+      {
+        "attributes": {
+          "literals": [
+            "experimental",
+            "ABIEncoderV2"
+          ]
+        },
+        "id": 4734,
+        "name": "PragmaDirective",
+        "src": "63:33:23"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 4732,
+          "absolutePath": "project:/contracts/IMarket.sol",
+          "file": "./IMarket.sol",
+          "scope": 4879,
+          "symbolAliases": [
+            {
+              "foreign": {
+                "attributes": {
+                  "argumentTypes": null,
+                  "overloadedDeclarations": [
+                    null
+                  ],
+                  "referencedDeclaration": null,
+                  "type": null,
+                  "value": "IMarket"
+                },
+                "id": 4735,
+                "name": "Identifier",
+                "src": "108:7:23"
+              },
+              "local": null
+            }
+          ],
+          "unitAlias": ""
+        },
+        "id": 4736,
+        "name": "ImportDirective",
+        "src": "100:38:23"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            4878
+          ],
+          "name": "IMedia",
+          "scope": 4879
+        },
+        "children": [
+          {
+            "attributes": {
+              "text": "@title Interface for Zora Protocol's Media"
+            },
+            "id": 4737,
+            "name": "StructuredDocumentation",
+            "src": "142:55:23"
+          },
+          {
+            "attributes": {
+              "canonicalName": "IMedia.EIP712Signature",
+              "name": "EIP712Signature",
+              "scope": 4878,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "deadline",
+                  "overrides": null,
+                  "scope": 4746,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 4738,
+                    "name": "ElementaryTypeName",
+                    "src": "257:7:23"
+                  }
+                ],
+                "id": 4739,
+                "name": "VariableDeclaration",
+                "src": "257:16:23"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "v",
+                  "overrides": null,
+                  "scope": 4746,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint8",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint8",
+                      "type": "uint8"
+                    },
+                    "id": 4740,
+                    "name": "ElementaryTypeName",
+                    "src": "284:5:23"
+                  }
+                ],
+                "id": 4741,
+                "name": "VariableDeclaration",
+                "src": "284:7:23"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "r",
+                  "overrides": null,
+                  "scope": 4746,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bytes32",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes32",
+                      "type": "bytes32"
+                    },
+                    "id": 4742,
+                    "name": "ElementaryTypeName",
+                    "src": "302:7:23"
+                  }
+                ],
+                "id": 4743,
+                "name": "VariableDeclaration",
+                "src": "302:9:23"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "s",
+                  "overrides": null,
+                  "scope": 4746,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bytes32",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes32",
+                      "type": "bytes32"
+                    },
+                    "id": 4744,
+                    "name": "ElementaryTypeName",
+                    "src": "322:7:23"
+                  }
+                ],
+                "id": 4745,
+                "name": "VariableDeclaration",
+                "src": "322:9:23"
+              }
+            ],
+            "id": 4746,
+            "name": "StructDefinition",
+            "src": "223:116:23"
+          },
+          {
+            "attributes": {
+              "canonicalName": "IMedia.MediaData",
+              "name": "MediaData",
+              "scope": 4878,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "tokenURI",
+                  "overrides": null,
+                  "scope": 4755,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 4747,
+                    "name": "ElementaryTypeName",
+                    "src": "440:6:23"
+                  }
+                ],
+                "id": 4748,
+                "name": "VariableDeclaration",
+                "src": "440:15:23"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "metadataURI",
+                  "overrides": null,
+                  "scope": 4755,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 4749,
+                    "name": "ElementaryTypeName",
+                    "src": "533:6:23"
+                  }
+                ],
+                "id": 4750,
+                "name": "VariableDeclaration",
+                "src": "533:18:23"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "contentHash",
+                  "overrides": null,
+                  "scope": 4755,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bytes32",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes32",
+                      "type": "bytes32"
+                    },
+                    "id": 4751,
+                    "name": "ElementaryTypeName",
+                    "src": "626:7:23"
+                  }
+                ],
+                "id": 4752,
+                "name": "VariableDeclaration",
+                "src": "626:19:23"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "metadataHash",
+                  "overrides": null,
+                  "scope": 4755,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bytes32",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes32",
+                      "type": "bytes32"
+                    },
+                    "id": 4753,
+                    "name": "ElementaryTypeName",
+                    "src": "723:7:23"
+                  }
+                ],
+                "id": 4754,
+                "name": "VariableDeclaration",
+                "src": "723:20:23"
+              }
+            ],
+            "id": 4755,
+            "name": "StructDefinition",
+            "src": "347:404:23"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "TokenURIUpdated"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "mutability": "mutable",
+                      "name": "_tokenId",
+                      "overrides": null,
+                      "scope": 4763,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4756,
+                        "name": "ElementaryTypeName",
+                        "src": "781:7:23"
+                      }
+                    ],
+                    "id": 4757,
+                    "name": "VariableDeclaration",
+                    "src": "781:24:23"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "owner",
+                      "overrides": null,
+                      "scope": 4763,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 4758,
+                        "name": "ElementaryTypeName",
+                        "src": "807:7:23"
+                      }
+                    ],
+                    "id": 4759,
+                    "name": "VariableDeclaration",
+                    "src": "807:13:23"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "_uri",
+                      "overrides": null,
+                      "scope": 4763,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 4760,
+                        "name": "ElementaryTypeName",
+                        "src": "822:6:23"
+                      }
+                    ],
+                    "id": 4761,
+                    "name": "VariableDeclaration",
+                    "src": "822:11:23"
+                  }
+                ],
+                "id": 4762,
+                "name": "ParameterList",
+                "src": "780:54:23"
+              }
+            ],
+            "id": 4763,
+            "name": "EventDefinition",
+            "src": "759:76:23"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "TokenMetadataURIUpdated"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "mutability": "mutable",
+                      "name": "_tokenId",
+                      "overrides": null,
+                      "scope": 4771,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4764,
+                        "name": "ElementaryTypeName",
+                        "src": "881:7:23"
+                      }
+                    ],
+                    "id": 4765,
+                    "name": "VariableDeclaration",
+                    "src": "881:24:23"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "owner",
+                      "overrides": null,
+                      "scope": 4771,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 4766,
+                        "name": "ElementaryTypeName",
+                        "src": "916:7:23"
+                      }
+                    ],
+                    "id": 4767,
+                    "name": "VariableDeclaration",
+                    "src": "916:13:23"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "_uri",
+                      "overrides": null,
+                      "scope": 4771,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 4768,
+                        "name": "ElementaryTypeName",
+                        "src": "940:6:23"
+                      }
+                    ],
+                    "id": 4769,
+                    "name": "VariableDeclaration",
+                    "src": "940:11:23"
+                  }
+                ],
+                "id": 4770,
+                "name": "ParameterList",
+                "src": "870:88:23"
+              }
+            ],
+            "id": 4771,
+            "name": "EventDefinition",
+            "src": "841:118:23"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "157c3df9",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "tokenMetadataURI",
+              "overrides": null,
+              "scope": 4878,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice Return the metadata URI for a piece of media given the token URI"
+                },
+                "id": 4772,
+                "name": "StructuredDocumentation",
+                "src": "967:93:23"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4779,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4773,
+                        "name": "ElementaryTypeName",
+                        "src": "1092:7:23"
+                      }
+                    ],
+                    "id": 4774,
+                    "name": "VariableDeclaration",
+                    "src": "1092:15:23"
+                  }
+                ],
+                "id": 4775,
+                "name": "ParameterList",
+                "src": "1091:17:23"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 4779,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 4776,
+                        "name": "ElementaryTypeName",
+                        "src": "1159:6:23"
+                      }
+                    ],
+                    "id": 4777,
+                    "name": "VariableDeclaration",
+                    "src": "1159:13:23"
+                  }
+                ],
+                "id": 4778,
+                "name": "ParameterList",
+                "src": "1158:15:23"
+              }
+            ],
+            "id": 4779,
+            "name": "FunctionDefinition",
+            "src": "1066:108:23"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "0efcb289",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "mint",
+              "overrides": null,
+              "scope": 4878,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice Mint new media for msg.sender."
+                },
+                "id": 4780,
+                "name": "StructuredDocumentation",
+                "src": "1182:59:23"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "data",
+                      "overrides": null,
+                      "scope": 4785,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "struct IMedia.MediaData",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "MediaData",
+                          "referencedDeclaration": 4755,
+                          "type": "struct IMedia.MediaData"
+                        },
+                        "id": 4781,
+                        "name": "UserDefinedTypeName",
+                        "src": "1261:9:23"
+                      }
+                    ],
+                    "id": 4782,
+                    "name": "VariableDeclaration",
+                    "src": "1261:23:23"
+                  }
+                ],
+                "id": 4783,
+                "name": "ParameterList",
+                "src": "1260:25:23"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4784,
+                "name": "ParameterList",
+                "src": "1303:0:23"
+              }
+            ],
+            "id": 4785,
+            "name": "FunctionDefinition",
+            "src": "1247:57:23"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "7a7a1202",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "mintWithSig",
+              "overrides": null,
+              "scope": 4878,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice EIP-712 mintWithSig method. Mints new media for a creator given a valid signature."
+                },
+                "id": 4786,
+                "name": "StructuredDocumentation",
+                "src": "1312:111:23"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "creator",
+                      "overrides": null,
+                      "scope": 4797,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 4787,
+                        "name": "ElementaryTypeName",
+                        "src": "1460:7:23"
+                      }
+                    ],
+                    "id": 4788,
+                    "name": "VariableDeclaration",
+                    "src": "1460:15:23"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "data",
+                      "overrides": null,
+                      "scope": 4797,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "struct IMedia.MediaData",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "MediaData",
+                          "referencedDeclaration": 4755,
+                          "type": "struct IMedia.MediaData"
+                        },
+                        "id": 4789,
+                        "name": "UserDefinedTypeName",
+                        "src": "1486:9:23"
+                      }
+                    ],
+                    "id": 4790,
+                    "name": "VariableDeclaration",
+                    "src": "1486:23:23"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "bidShares",
+                      "overrides": null,
+                      "scope": 4797,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "struct IMarket.BidShares",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IMarket.BidShares",
+                          "referencedDeclaration": 4599,
+                          "type": "struct IMarket.BidShares"
+                        },
+                        "id": 4791,
+                        "name": "UserDefinedTypeName",
+                        "src": "1520:17:23"
+                      }
+                    ],
+                    "id": 4792,
+                    "name": "VariableDeclaration",
+                    "src": "1520:36:23"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "sig",
+                      "overrides": null,
+                      "scope": 4797,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "struct IMedia.EIP712Signature",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "EIP712Signature",
+                          "referencedDeclaration": 4746,
+                          "type": "struct IMedia.EIP712Signature"
+                        },
+                        "id": 4793,
+                        "name": "UserDefinedTypeName",
+                        "src": "1567:15:23"
+                      }
+                    ],
+                    "id": 4794,
+                    "name": "VariableDeclaration",
+                    "src": "1567:28:23"
+                  }
+                ],
+                "id": 4795,
+                "name": "ParameterList",
+                "src": "1449:153:23"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4796,
+                "name": "ParameterList",
+                "src": "1611:0:23"
+              }
+            ],
+            "id": 4797,
+            "name": "FunctionDefinition",
+            "src": "1429:183:23"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "f6b630f0",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "auctionTransfer",
+              "overrides": null,
+              "scope": 4878,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice Transfer the token with the given ID to a given address.\nSave the previous owner before the transfer, in case there is a sell-on fee.\n@dev This can only be called by the auction contract specified at deployment"
+                },
+                "id": 4798,
+                "name": "StructuredDocumentation",
+                "src": "1620:255:23"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4805,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4799,
+                        "name": "ElementaryTypeName",
+                        "src": "1906:7:23"
+                      }
+                    ],
+                    "id": 4800,
+                    "name": "VariableDeclaration",
+                    "src": "1906:15:23"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "recipient",
+                      "overrides": null,
+                      "scope": 4805,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 4801,
+                        "name": "ElementaryTypeName",
+                        "src": "1923:7:23"
+                      }
+                    ],
+                    "id": 4802,
+                    "name": "VariableDeclaration",
+                    "src": "1923:17:23"
+                  }
+                ],
+                "id": 4803,
+                "name": "ParameterList",
+                "src": "1905:36:23"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4804,
+                "name": "ParameterList",
+                "src": "1950:0:23"
+              }
+            ],
+            "id": 4805,
+            "name": "FunctionDefinition",
+            "src": "1881:70:23"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "e49f8768",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "setAsk",
+              "overrides": null,
+              "scope": 4878,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice Set the ask on a piece of media"
+                },
+                "id": 4806,
+                "name": "StructuredDocumentation",
+                "src": "1959:60:23"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4813,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4807,
+                        "name": "ElementaryTypeName",
+                        "src": "2041:7:23"
+                      }
+                    ],
+                    "id": 4808,
+                    "name": "VariableDeclaration",
+                    "src": "2041:15:23"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "ask",
+                      "overrides": null,
+                      "scope": 4813,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4809,
+                        "name": "ElementaryTypeName",
+                        "src": "2058:7:23"
+                      }
+                    ],
+                    "id": 4810,
+                    "name": "VariableDeclaration",
+                    "src": "2058:11:23"
+                  }
+                ],
+                "id": 4811,
+                "name": "ParameterList",
+                "src": "2040:30:23"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4812,
+                "name": "ParameterList",
+                "src": "2079:0:23"
+              }
+            ],
+            "id": 4813,
+            "name": "FunctionDefinition",
+            "src": "2025:55:23"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "28220f35",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "removeAsk",
+              "overrides": null,
+              "scope": 4878,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice Remove the ask on a piece of media"
+                },
+                "id": 4814,
+                "name": "StructuredDocumentation",
+                "src": "2088:63:23"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4819,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4815,
+                        "name": "ElementaryTypeName",
+                        "src": "2176:7:23"
+                      }
+                    ],
+                    "id": 4816,
+                    "name": "VariableDeclaration",
+                    "src": "2176:15:23"
+                  }
+                ],
+                "id": 4817,
+                "name": "ParameterList",
+                "src": "2175:17:23"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4818,
+                "name": "ParameterList",
+                "src": "2201:0:23"
+              }
+            ],
+            "id": 4819,
+            "name": "FunctionDefinition",
+            "src": "2157:45:23"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "6bbfbb51",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "setBid",
+              "overrides": null,
+              "scope": 4878,
+              "stateMutability": "payable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice Set the bid on a piece of media"
+                },
+                "id": 4820,
+                "name": "StructuredDocumentation",
+                "src": "2210:60:23"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4827,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4821,
+                        "name": "ElementaryTypeName",
+                        "src": "2292:7:23"
+                      }
+                    ],
+                    "id": 4822,
+                    "name": "VariableDeclaration",
+                    "src": "2292:15:23"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "bid",
+                      "overrides": null,
+                      "scope": 4827,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "struct IMarket.Bid",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IMarket.Bid",
+                          "referencedDeclaration": 4592,
+                          "type": "struct IMarket.Bid"
+                        },
+                        "id": 4823,
+                        "name": "UserDefinedTypeName",
+                        "src": "2309:11:23"
+                      }
+                    ],
+                    "id": 4824,
+                    "name": "VariableDeclaration",
+                    "src": "2309:24:23"
+                  }
+                ],
+                "id": 4825,
+                "name": "ParameterList",
+                "src": "2291:43:23"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4826,
+                "name": "ParameterList",
+                "src": "2352:0:23"
+              }
+            ],
+            "id": 4827,
+            "name": "FunctionDefinition",
+            "src": "2276:77:23"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "b320f459",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "removeBid",
+              "overrides": null,
+              "scope": 4878,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice Remove the bid on a piece of media"
+                },
+                "id": 4828,
+                "name": "StructuredDocumentation",
+                "src": "2361:63:23"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4833,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4829,
+                        "name": "ElementaryTypeName",
+                        "src": "2449:7:23"
+                      }
+                    ],
+                    "id": 4830,
+                    "name": "VariableDeclaration",
+                    "src": "2449:15:23"
+                  }
+                ],
+                "id": 4831,
+                "name": "ParameterList",
+                "src": "2448:17:23"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4832,
+                "name": "ParameterList",
+                "src": "2474:0:23"
+              }
+            ],
+            "id": 4833,
+            "name": "FunctionDefinition",
+            "src": "2430:45:23"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "b501806e",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "acceptBid",
+              "overrides": null,
+              "scope": 4878,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4840,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4834,
+                        "name": "ElementaryTypeName",
+                        "src": "2502:7:23"
+                      }
+                    ],
+                    "id": 4835,
+                    "name": "VariableDeclaration",
+                    "src": "2502:15:23"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "bid",
+                      "overrides": null,
+                      "scope": 4840,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "struct IMarket.Bid",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "IMarket.Bid",
+                          "referencedDeclaration": 4592,
+                          "type": "struct IMarket.Bid"
+                        },
+                        "id": 4836,
+                        "name": "UserDefinedTypeName",
+                        "src": "2519:11:23"
+                      }
+                    ],
+                    "id": 4837,
+                    "name": "VariableDeclaration",
+                    "src": "2519:24:23"
+                  }
+                ],
+                "id": 4838,
+                "name": "ParameterList",
+                "src": "2501:43:23"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4839,
+                "name": "ParameterList",
+                "src": "2553:0:23"
+              }
+            ],
+            "id": 4840,
+            "name": "FunctionDefinition",
+            "src": "2483:71:23"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "b1e130fc",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "revokeApproval",
+              "overrides": null,
+              "scope": 4878,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice Revoke approval for a piece of media"
+                },
+                "id": 4841,
+                "name": "StructuredDocumentation",
+                "src": "2562:65:23"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4846,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4842,
+                        "name": "ElementaryTypeName",
+                        "src": "2657:7:23"
+                      }
+                    ],
+                    "id": 4843,
+                    "name": "VariableDeclaration",
+                    "src": "2657:15:23"
+                  }
+                ],
+                "id": 4844,
+                "name": "ParameterList",
+                "src": "2656:17:23"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4845,
+                "name": "ParameterList",
+                "src": "2682:0:23"
+              }
+            ],
+            "id": 4846,
+            "name": "FunctionDefinition",
+            "src": "2633:50:23"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "18e97fd1",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "updateTokenURI",
+              "overrides": null,
+              "scope": 4878,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice Update the token URI"
+                },
+                "id": 4847,
+                "name": "StructuredDocumentation",
+                "src": "2691:49:23"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4854,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4848,
+                        "name": "ElementaryTypeName",
+                        "src": "2770:7:23"
+                      }
+                    ],
+                    "id": 4849,
+                    "name": "VariableDeclaration",
+                    "src": "2770:15:23"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenURI",
+                      "overrides": null,
+                      "scope": 4854,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 4850,
+                        "name": "ElementaryTypeName",
+                        "src": "2787:6:23"
+                      }
+                    ],
+                    "id": 4851,
+                    "name": "VariableDeclaration",
+                    "src": "2787:24:23"
+                  }
+                ],
+                "id": 4852,
+                "name": "ParameterList",
+                "src": "2769:43:23"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4853,
+                "name": "ParameterList",
+                "src": "2821:0:23"
+              }
+            ],
+            "id": 4854,
+            "name": "FunctionDefinition",
+            "src": "2746:76:23"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "78a89567",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getTokenCount",
+              "overrides": null,
+              "scope": 4878,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4855,
+                "name": "ParameterList",
+                "src": "2876:2:23"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 4859,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4856,
+                        "name": "ElementaryTypeName",
+                        "src": "2901:7:23"
+                      }
+                    ],
+                    "id": 4857,
+                    "name": "VariableDeclaration",
+                    "src": "2901:7:23"
+                  }
+                ],
+                "id": 4858,
+                "name": "ParameterList",
+                "src": "2900:9:23"
+              }
+            ],
+            "id": 4859,
+            "name": "FunctionDefinition",
+            "src": "2854:56:23"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "75682e79",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "updateTokenMetadataURI",
+              "overrides": null,
+              "scope": 4878,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice Update the token metadata uri"
+                },
+                "id": 4860,
+                "name": "StructuredDocumentation",
+                "src": "2918:58:23"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4867,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4861,
+                        "name": "ElementaryTypeName",
+                        "src": "3024:7:23"
+                      }
+                    ],
+                    "id": 4862,
+                    "name": "VariableDeclaration",
+                    "src": "3024:15:23"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "metadataURI",
+                      "overrides": null,
+                      "scope": 4867,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 4863,
+                        "name": "ElementaryTypeName",
+                        "src": "3050:6:23"
+                      }
+                    ],
+                    "id": 4864,
+                    "name": "VariableDeclaration",
+                    "src": "3050:27:23"
+                  }
+                ],
+                "id": 4865,
+                "name": "ParameterList",
+                "src": "3013:71:23"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4866,
+                "name": "ParameterList",
+                "src": "3093:0:23"
+              }
+            ],
+            "id": 4867,
+            "name": "FunctionDefinition",
+            "src": "2982:112:23"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "0e2a1778",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "permit",
+              "overrides": null,
+              "scope": 4878,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice EIP-712 permit method. Sets an approved spender given a valid signature."
+                },
+                "id": 4868,
+                "name": "StructuredDocumentation",
+                "src": "3102:101:23"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "spender",
+                      "overrides": null,
+                      "scope": 4877,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 4869,
+                        "name": "ElementaryTypeName",
+                        "src": "3235:7:23"
+                      }
+                    ],
+                    "id": 4870,
+                    "name": "VariableDeclaration",
+                    "src": "3235:15:23"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "overrides": null,
+                      "scope": 4877,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 4871,
+                        "name": "ElementaryTypeName",
+                        "src": "3261:7:23"
+                      }
+                    ],
+                    "id": 4872,
+                    "name": "VariableDeclaration",
+                    "src": "3261:15:23"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "sig",
+                      "overrides": null,
+                      "scope": 4877,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "struct IMedia.EIP712Signature",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "EIP712Signature",
+                          "referencedDeclaration": 4746,
+                          "type": "struct IMedia.EIP712Signature"
+                        },
+                        "id": 4873,
+                        "name": "UserDefinedTypeName",
+                        "src": "3287:15:23"
+                      }
+                    ],
+                    "id": 4874,
+                    "name": "VariableDeclaration",
+                    "src": "3287:28:23"
+                  }
+                ],
+                "id": 4875,
+                "name": "ParameterList",
+                "src": "3224:98:23"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 4876,
+                "name": "ParameterList",
+                "src": "3331:0:23"
+              }
+            ],
+            "id": 4877,
+            "name": "FunctionDefinition",
+            "src": "3209:123:23"
+          }
+        ],
+        "id": 4878,
+        "name": "ContractDefinition",
+        "src": "199:3136:23"
+      }
+    ],
+    "id": 4879,
+    "name": "SourceUnit",
+    "src": "39:3296:23"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.8+commit.0bbfe453.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.4",
+  "updatedAt": "2022-02-18T14:15:07.275Z",
+  "devdoc": {
+    "methods": {
+      "auctionTransfer(uint256,address)": {
+        "details": "This can only be called by the auction contract specified at deployment"
+      }
+    },
+    "title": "Interface for Zora Protocol's Media"
+  },
+  "userdoc": {
+    "methods": {
+      "auctionTransfer(uint256,address)": {
+        "notice": "Transfer the token with the given ID to a given address. Save the previous owner before the transfer, in case there is a sell-on fee."
+      },
+      "mint((string,string,bytes32,bytes32))": {
+        "notice": "Mint new media for msg.sender."
+      },
+      "mintWithSig(address,(string,string,bytes32,bytes32),((uint256),(uint256),(uint256)),(uint256,uint8,bytes32,bytes32))": {
+        "notice": "EIP-712 mintWithSig method. Mints new media for a creator given a valid signature."
+      },
+      "permit(address,uint256,(uint256,uint8,bytes32,bytes32))": {
+        "notice": "EIP-712 permit method. Sets an approved spender given a valid signature."
+      },
+      "removeAsk(uint256)": {
+        "notice": "Remove the ask on a piece of media"
+      },
+      "removeBid(uint256)": {
+        "notice": "Remove the bid on a piece of media"
+      },
+      "revokeApproval(uint256)": {
+        "notice": "Revoke approval for a piece of media"
+      },
+      "setAsk(uint256,uint256)": {
+        "notice": "Set the ask on a piece of media"
+      },
+      "setBid(uint256,(uint256,address,address,(uint256)))": {
+        "notice": "Set the bid on a piece of media"
+      },
+      "tokenMetadataURI(uint256)": {
+        "notice": "Return the metadata URI for a piece of media given the token URI"
+      },
+      "updateTokenMetadataURI(uint256,string)": {
+        "notice": "Update the token metadata uri"
+      },
+      "updateTokenURI(uint256,string)": {
+        "notice": "Update the token URI"
+      }
+    }
+  }
+}

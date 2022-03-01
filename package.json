@@ -1,0 +1,11 @@
+{
+  "name": "Test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@openzeppelin/contracts": "3.2.0",
+    "@truffle/hdwallet-provider": "^2.0.3",
+    "truffle-plugin-verify": "^0.5.21"
+  }
+}
